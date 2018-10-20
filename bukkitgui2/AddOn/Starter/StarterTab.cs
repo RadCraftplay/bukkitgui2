@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -807,5 +808,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			Config.WriteInt("starter", "updatebranch", CBUpdateBehaviour.SelectedIndex);
 		}
-	}
+
+        private void BtnOpenDir_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInput())
+            {
+                return;
+            }
+
+            FileInfo jarFileInfo = new FileInfo(TxtJarFile.Text);
+
+            Process explorer = new Process();
+            explorer.StartInfo.FileName = "explorer";
+            explorer.StartInfo.Arguments = '"' + jarFileInfo.Directory.FullName + '"';
+
+            explorer.Start();
+        }
+    }
 }
