@@ -106,6 +106,13 @@
     <Compile Include="AddOn\Backup\BackupTab.Designer.cs">
       <DependentUpon>BackupTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\LogManager\LogManager.cs" />
+    <Compile Include="AddOn\LogManager\LogManagerTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\LogManager\LogManagerTab.Designer.cs">
+      <DependentUpon>LogManagerTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ConsoleInput\AutoCompletionMenu.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -510,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Forwarder\ForwarderTab.resx">
       <DependentUpon>ForwarderTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\LogManager\LogManagerTab.resx">
+      <DependentUpon>LogManagerTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\PlayerList\PlayerListTab.resx">
       <DependentUpon>PlayerListTab.cs</DependentUpon>
