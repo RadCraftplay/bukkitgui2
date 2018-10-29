@@ -4,6 +4,7 @@ using System.IO;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
 {
@@ -117,7 +118,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             switch (_fileInfo.Extension)
             {
                 case ".gz":
-                    
+                    text = Compression.GZipDecompressTxtFile(_fileInfo.FullName);
                     break;
                 default:
                     using (TextReader r = new StreamReader(_fileInfo.FullName))

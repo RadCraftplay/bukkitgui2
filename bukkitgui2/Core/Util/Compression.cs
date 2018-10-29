@@ -9,6 +9,7 @@
 
 using System;
 using System.IO;
+using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Zip;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
@@ -156,5 +157,24 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 				return false;
 			}
 		}
+
+        /// <summary>
+        ///     Decompresses gzip-compressed text file to string
+        /// </summary>
+        /// <param name="mygzipfile">the gzip file to decompress</param>
+        /// <returns>decompressed contents of the file</returns>
+        public static string GZipDecompressTxtFile(string mygzipfile)
+        {
+            // Decompress GZip file to string
+            //Example: string text = GZipDecompressTxtFile("c:/foo.txt.gzip")
+
+            // Create GZip stream
+            GZipInputStream gzipIStream = new GZipInputStream(File.OpenRead(mygzipfile));
+            // Read contents of the file
+            using (StreamReader r = new StreamReader(gzipIStream))
+            {
+                return r.ReadToEnd();
+            }
+        }
 	}
 }
