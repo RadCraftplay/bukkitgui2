@@ -12,16 +12,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
     {
         public IAddon ParentAddon { get; set; }
 
-        private List<LogFile> _logs;
-
         public LogManagerTab()
         {
             InitializeComponent();
 
-            this.Load += LogManagerTab_Load;
             this.SlvLogs.ItemSelectionChanged += SlvLogs_ItemSelectionChanged;
 
-            LoadLogs();
+            RefreshLogs();
         }
 
         private void SlvLogs_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -37,38 +34,38 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             }
         }
 
-        private void LogManagerTab_Load(object sender, EventArgs e)
-        {
-            foreach (LogFile log in _logs)
-            {
-                // Name column
-                ListViewItem item = new ListViewItem();
-                item.Text = log.GetName();
-                item.Tag = log;
-
-                // Date column
-                item.SubItems.Add(new ListViewItem.ListViewSubItem()
-                {
-                    Text = log.GetDate()
-                });
-
-                SlvLogs.Items.Add(item);
-            }
-        }
-
-        private void LoadLogs()
+        private void RefreshLogs()
         {
             DirectoryInfo logDir = new DirectoryInfo(Fl.Location(RequestFile.Serverdir) + "\\logs\\");
-            _logs = new List<LogFile>();
 
+            // Clear list
+            SlvLogs.Items.Clear();
+
+            // Load and display logs
             foreach (FileInfo i in logDir.GetFiles())
             {
                 if (i.Extension != ".log" && i.Extension != ".gz")
                     continue;
 
                 LogFile f = new LogFile(i);
-                _logs.Add(f);
+                CreateItem(f);
             }
+        }
+
+        private void CreateItem(LogFile log)
+        {
+            // Name column
+            ListViewItem item = new ListViewItem();
+            item.Text = log.GetName();
+            item.Tag = log;
+
+            // Date column
+            item.SubItems.Add(new ListViewItem.ListViewSubItem()
+            {
+                Text = log.GetDate()
+            });
+
+            SlvLogs.Items.Add(item);
         }
     }
 
