@@ -99,9 +99,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
                     break;
                 default:
                     date = string.Format("{0}-{1}-{2}",
-                        _fileInfo.CreationTime.Year,
-                        _fileInfo.CreationTime.Month,
-                        _fileInfo.CreationTime.Day);
+                        _fileInfo.LastWriteTime.Year,
+                        _fileInfo.LastWriteTime.Month,
+                        _fileInfo.LastWriteTime.Day);
                     break;
             }
 
