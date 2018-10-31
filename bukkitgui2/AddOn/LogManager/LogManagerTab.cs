@@ -64,6 +64,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             {
                 Text = log.GetDate()
             });
+            // Size column
+            item.SubItems.Add(new ListViewItem.ListViewSubItem()
+            {
+                Text = string.Format("{0} kb", log.GetSize())
+            });
 
             SlvLogs.Items.Add(item);
         }
@@ -126,6 +131,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             }
 
             return text;
+        }
+
+        public long GetSize()
+        {
+            return _fileInfo.Length == 0 
+                ? 0 
+                : (_fileInfo.Length % 1024 == 0 
+                    ? _fileInfo.Length / 1024 
+                    : (_fileInfo.Length / 1024) + 1);
         }
     }
 }

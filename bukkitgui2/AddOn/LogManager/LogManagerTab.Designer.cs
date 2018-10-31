@@ -32,6 +32,7 @@
             this.SlvLogs = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
             this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GbPreview = new System.Windows.Forms.GroupBox();
             this.RtbPreview = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,7 +65,8 @@
             // 
             this.SlvLogs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColName,
-            this.ColDate});
+            this.ColDate,
+            this.ColSize});
             this.SlvLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SlvLogs.Location = new System.Drawing.Point(0, 0);
             this.SlvLogs.Name = "SlvLogs";
@@ -82,6 +84,11 @@
             // 
             this.ColDate.Text = "Date";
             this.ColDate.Width = 180;
+            //
+            // ColSize
+            //
+            this.ColSize.Text = "Size";
+            this.ColSize.Width = 90;
             // 
             // GbPreview
             // 
@@ -125,6 +132,7 @@
         private Controls.SortableListView.SortableListView SlvLogs;
         private System.Windows.Forms.ColumnHeader ColName;
         private System.Windows.Forms.ColumnHeader ColDate;
+        private System.Windows.Forms.ColumnHeader ColSize;
         private System.Windows.Forms.GroupBox GbPreview;
         private System.Windows.Forms.RichTextBox RtbPreview;
     }
