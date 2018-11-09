@@ -34,6 +34,7 @@
             this.ColDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnRefresh = new MetroFramework.Controls.MetroButton();
+            this.BtnOpenDir = new MetroFramework.Controls.MetroButton();
             this.GbPreview = new System.Windows.Forms.GroupBox();
             this.RtbPreview = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,6 +57,7 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitContainer1.Panel1.Controls.Add(this.SlvLogs);
             this.splitContainer1.Panel1.Controls.Add(this.BtnRefresh);
+            this.splitContainer1.Panel1.Controls.Add(this.BtnOpenDir);
             // 
             // splitContainer1.Panel2
             // 
@@ -108,6 +110,18 @@
             this.BtnRefresh.Text = "Refresh";
             this.BtnRefresh.UseSelectable = true;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            //
+            // BtnOpenDir
+            //
+            this.BtnOpenDir.Anchor = System.Windows.Forms.AnchorStyles.Right
+                | System.Windows.Forms.AnchorStyles.Bottom;
+            this.BtnOpenDir.Location = new System.Drawing.Point(560, 235);
+            this.BtnOpenDir.Name = "BtnOpenDir";
+            this.BtnOpenDir.Size = new System.Drawing.Size(150, 23);
+            this.BtnOpenDir.TabIndex = 2;
+            this.BtnOpenDir.Text = "Open Logs Directory";
+            this.BtnOpenDir.UseSelectable = true;
+            this.BtnOpenDir.Click += new System.EventHandler(this.BtnOpenDir_Click);
             // 
             // GbPreview
             // 
@@ -153,6 +167,7 @@
         private System.Windows.Forms.ColumnHeader ColDate;
         private System.Windows.Forms.ColumnHeader ColSize;
         private MetroFramework.Controls.MetroButton BtnRefresh;
+        private MetroFramework.Controls.MetroButton BtnOpenDir;
         private System.Windows.Forms.GroupBox GbPreview;
         private System.Windows.Forms.RichTextBox RtbPreview;
     }

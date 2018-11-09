@@ -5,12 +5,18 @@ using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Util;
+using System.Diagnostics;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
 {
     public partial class LogManagerTab : MetroUserControl, IAddonTab
     {
         public IAddon ParentAddon { get; set; }
+
+        private static string GetLogsDirectory()
+        {
+            return Fl.Location(RequestFile.Serverdir) + "logs\\";
+        }
 
         public LogManagerTab()
         {
@@ -37,6 +43,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             RefreshLogs();
+        }
+
+        private void BtnOpenDir_Click(object sender, EventArgs e)
+        {
+            Process explorer = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = "explorer.exe",
+                    Arguments = '"' + GetLogsDirectory() + '"'
+                }
+            };
+            explorer.Start(); //Open containing directory
         }
 
         private void RefreshLogs()
