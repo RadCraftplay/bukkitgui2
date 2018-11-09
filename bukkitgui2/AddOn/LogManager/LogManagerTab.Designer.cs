@@ -106,7 +106,7 @@
             this.BtnRefresh.Location = new System.Drawing.Point(715, 235);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.SlvLogs.TabIndex = 1;
+            this.BtnRefresh.TabIndex = 2;
             this.BtnRefresh.Text = "Refresh";
             this.BtnRefresh.UseSelectable = true;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
@@ -118,7 +118,7 @@
             this.BtnOpenDir.Location = new System.Drawing.Point(560, 235);
             this.BtnOpenDir.Name = "BtnOpenDir";
             this.BtnOpenDir.Size = new System.Drawing.Size(150, 23);
-            this.BtnOpenDir.TabIndex = 2;
+            this.BtnOpenDir.TabIndex = 1;
             this.BtnOpenDir.Text = "Open Logs Directory";
             this.BtnOpenDir.UseSelectable = true;
             this.BtnOpenDir.Click += new System.EventHandler(this.BtnOpenDir_Click);
