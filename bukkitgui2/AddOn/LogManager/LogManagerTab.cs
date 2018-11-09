@@ -60,7 +60,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
 
         private void RefreshLogs()
         {
-            DirectoryInfo logDir = new DirectoryInfo(Fl.Location(RequestFile.Serverdir) + "\\logs\\");
+            DirectoryInfo logDir = new DirectoryInfo(GetLogsDirectory());
 
             // Clear list
             SlvLogs.Items.Clear();
