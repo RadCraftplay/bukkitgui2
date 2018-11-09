@@ -34,6 +34,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             }
         }
 
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshLogs();
+        }
+
         private void RefreshLogs()
         {
             DirectoryInfo logDir = new DirectoryInfo(Fl.Location(RequestFile.Serverdir) + "\\logs\\");
