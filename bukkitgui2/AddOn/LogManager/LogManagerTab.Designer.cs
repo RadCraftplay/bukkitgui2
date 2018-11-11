@@ -35,6 +35,7 @@
             this.ColSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnRefresh = new MetroFramework.Controls.MetroButton();
             this.BtnOpenDir = new MetroFramework.Controls.MetroButton();
+            this.BtnDelete = new MetroFramework.Controls.MetroButton();
             this.GbPreview = new System.Windows.Forms.GroupBox();
             this.RtbPreview = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitContainer1.Panel1.Controls.Add(this.SlvLogs);
+            this.splitContainer1.Panel1.Controls.Add(this.BtnDelete);
             this.splitContainer1.Panel1.Controls.Add(this.BtnRefresh);
             this.splitContainer1.Panel1.Controls.Add(this.BtnOpenDir);
             // 
@@ -122,6 +124,18 @@
             this.BtnOpenDir.Text = "Open Logs Directory";
             this.BtnOpenDir.UseSelectable = true;
             this.BtnOpenDir.Click += new System.EventHandler(this.BtnOpenDir_Click);
+            //
+            // BtnDelete
+            //
+            this.BtnDelete.Anchor = System.Windows.Forms.AnchorStyles.Left
+                | System.Windows.Forms.AnchorStyles.Bottom;
+            this.BtnDelete.Location = new System.Drawing.Point(5, 235);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(75, 23);
+            this.BtnDelete.TabIndex = 2;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseSelectable = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // GbPreview
             // 
@@ -168,6 +182,7 @@
         private System.Windows.Forms.ColumnHeader ColSize;
         private MetroFramework.Controls.MetroButton BtnRefresh;
         private MetroFramework.Controls.MetroButton BtnOpenDir;
+        private MetroFramework.Controls.MetroButton BtnDelete;
         private System.Windows.Forms.GroupBox GbPreview;
         private System.Windows.Forms.RichTextBox RtbPreview;
     }

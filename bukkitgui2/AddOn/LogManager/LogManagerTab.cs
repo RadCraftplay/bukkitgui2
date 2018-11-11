@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Util;
 using System.Diagnostics;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
 {
@@ -56,6 +57,30 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
                 }
             };
             explorer.Start(); //Open containing directory
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SlvLogs.SelectedItems.Count > 0)
+                {
+                    foreach (ListViewItem i in SlvLogs.SelectedItems)
+                    {
+                        LogFile log = i.Tag as LogFile;
+                        File.Delete(log.GetFilename());
+                        i.Remove();
+                    }
+                }
+            }
+            catch
+            {
+                Logger.Log(LogLevel.Warning, this.ToString(), "Error removing selected file(s)");
+                MessageBox.Show("Unable to remove selected file(s)!",
+                    string.Format("BukkitGUI 2: {0}", ParentAddon.Name),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
         private void RefreshLogs()
@@ -110,6 +135,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
         public string GetName()
         {
             return _fileInfo.Name;
+        }
+
+        public string GetFilename()
+        {
+            return _fileInfo.FullName;
         }
 
         public string GetDate()
