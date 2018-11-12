@@ -33,7 +33,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             if (e.Item != null && e.IsSelected == true)
             {
                 LogFile log = e.Item.Tag as LogFile;
-                RtbPreview.Text = log.GetText();
+                RtbPreview.Text = log.Text;
             }
             else
             {
@@ -68,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
                     foreach (ListViewItem i in SlvLogs.SelectedItems)
                     {
                         LogFile log = i.Tag as LogFile;
-                        File.Delete(log.GetFilename());
+                        File.Delete(log.FileName);
                         i.Remove();
                     }
                 }
@@ -105,18 +105,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
         {
             // Name column
             ListViewItem item = new ListViewItem();
-            item.Text = log.GetName();
+            item.Text = log.Name;
             item.Tag = log;
 
             // Date column
             item.SubItems.Add(new ListViewItem.ListViewSubItem()
             {
-                Text = log.GetDate()
+                Text = log.Date
             });
             // Size column
             item.SubItems.Add(new ListViewItem.ListViewSubItem()
             {
-                Text = string.Format("{0} kb", log.GetSize())
+                Text = string.Format("{0} kb", log.Size)
             });
 
             SlvLogs.Items.Add(item);
@@ -132,68 +132,70 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             _fileInfo = info;
         }
 
-        public string GetName()
-        {
-            return _fileInfo.Name;
-        }
+        public string Name => _fileInfo.Name;
+        public string FileName => _fileInfo.FullName;
 
-        public string GetFilename()
+        public string Date
         {
-            return _fileInfo.FullName;
-        }
-
-        public string GetDate()
-        {
-            string date = string.Empty;
-
-            switch (_fileInfo.Extension)
+            get
             {
-                case ".gz":
-                    // Deserialize date from filename
-                    string[] parts = GetName().Split('-');
-                    date = string.Format("{0}-{1}-{2}",
-                        parts[0],
-                        parts[1],
-                        parts[2]);
-                    break;
-                default:
-                    date = string.Format("{0}-{1}-{2}",
-                        _fileInfo.LastWriteTime.Year,
-                        _fileInfo.LastWriteTime.Month,
-                        _fileInfo.LastWriteTime.Day);
-                    break;
-            }
+                string date = string.Empty;
 
-            return date;
+                switch (_fileInfo.Extension)
+                {
+                    case ".gz":
+                        // Deserialize date from filename
+                        string[] parts = Name.Split('-');
+                        date = string.Format("{0}-{1}-{2}",
+                            parts[0],
+                            parts[1],
+                            parts[2]);
+                        break;
+                    default:
+                        date = string.Format("{0}-{1}-{2}",
+                            _fileInfo.LastWriteTime.Year,
+                            _fileInfo.LastWriteTime.Month,
+                            _fileInfo.LastWriteTime.Day);
+                        break;
+                }
+
+                return date;
+            }
         }
 
-        public string GetText()
+        public string Text
         {
-            string text = string.Empty;
-
-            switch (_fileInfo.Extension)
+            get
             {
-                case ".gz":
-                    text = Compression.GZipDecompressTxtFile(_fileInfo.FullName);
-                    break;
-                default:
-                    using (TextReader r = new StreamReader(_fileInfo.FullName))
-                    {
-                        text = r.ReadToEnd();
-                    }
-                    break;
-            }
+                string text = string.Empty;
 
-            return text;
+                switch (_fileInfo.Extension)
+                {
+                    case ".gz":
+                        text = Compression.GZipDecompressTxtFile(_fileInfo.FullName);
+                        break;
+                    default:
+                        using (TextReader r = new StreamReader(_fileInfo.FullName))
+                        {
+                            text = r.ReadToEnd();
+                        }
+                        break;
+                }
+
+                return text;
+            }
         }
 
-        public long GetSize()
+        public long Size
         {
-            return _fileInfo.Length == 0 
-                ? 0 
-                : (_fileInfo.Length % 1024 == 0 
-                    ? _fileInfo.Length / 1024 
-                    : (_fileInfo.Length / 1024) + 1);
+            get
+            {
+                return _fileInfo.Length == 0
+                    ? 0
+                    : (_fileInfo.Length % 1024 == 0
+                        ? _fileInfo.Length / 1024
+                        : (_fileInfo.Length / 1024) + 1);
+            }
         }
     }
 }
