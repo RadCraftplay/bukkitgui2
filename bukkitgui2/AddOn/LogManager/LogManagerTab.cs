@@ -169,17 +169,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.LogManager
             {
                 string text = string.Empty;
 
-                switch (_fileInfo.Extension)
+                try
                 {
-                    case ".gz":
-                        text = Compression.GZipDecompressTxtFile(_fileInfo.FullName);
-                        break;
-                    default:
-                        using (TextReader r = new StreamReader(_fileInfo.FullName))
-                        {
-                            text = r.ReadToEnd();
-                        }
-                        break;
+                    switch (_fileInfo.Extension)
+                    {
+                        case ".gz":
+                            text = Compression.GZipDecompressTxtFile(_fileInfo.FullName);
+                            break;
+                        default:
+                            using (TextReader r = new StreamReader(_fileInfo.FullName))
+                            {
+                                text = r.ReadToEnd();
+                            }
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    text = "Error: " + e.Message;
                 }
 
                 return text;
