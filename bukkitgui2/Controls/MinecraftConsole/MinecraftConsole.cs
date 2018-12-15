@@ -72,6 +72,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		public Boolean Autoscroll { get; set; }
 
 		private readonly Dictionary<MessageType, Color> _colorCache;
+        private readonly string[] _msgTypeNameCache;
 
 		public MinecraftConsole()
 		{
@@ -86,39 +87,45 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 			Autoscroll = true;
 			CreateContextMenu();
 
-
-			string[] names = Enum.GetNames(typeof (MessageType));
-
+            _msgTypeNameCache = Enum.GetNames(typeof (MessageType));
 			_colorCache = new Dictionary<MessageType, Color>();
-			foreach (string name in names)
-			{
-				MessageType t = (MessageType) Enum.Parse(typeof (MessageType), name);
-				switch (t)
-				{
-					case MessageType.Info:
-						_colorCache.Add(t, MessageColorInfo);
-						break;
-					case MessageType.JavaStatus:
-					case MessageType.Warning:
-						_colorCache.Add(t, MessageColorWarning);
-						break;
-					case MessageType.Severe:
-					case MessageType.JavaStackTrace:
-						_colorCache.Add(t, MessageColorSevere);
-						break;
-					case MessageType.PlayerJoin:
-					case MessageType.PlayerLeave:
-					case MessageType.PlayerKick:
-					case MessageType.PlayerBan:
-					case MessageType.PlayerIpBan:
-						_colorCache.Add(t, MessageColorPlayerAction);
-						break;
-					default:
-						_colorCache.Add(t, MessageColorUnknown);
-						break;
-				}
-			}
+
+            UpdateColorCache();
 		}
+
+        public void UpdateColorCache()
+        {
+            _colorCache.Clear();
+
+            foreach (string name in _msgTypeNameCache)
+            {
+                MessageType t = (MessageType)Enum.Parse(typeof(MessageType), name);
+                switch (t)
+                {
+                    case MessageType.Info:
+                        _colorCache.Add(t, MessageColorInfo);
+                        break;
+                    case MessageType.JavaStatus:
+                    case MessageType.Warning:
+                        _colorCache.Add(t, MessageColorWarning);
+                        break;
+                    case MessageType.Severe:
+                    case MessageType.JavaStackTrace:
+                        _colorCache.Add(t, MessageColorSevere);
+                        break;
+                    case MessageType.PlayerJoin:
+                    case MessageType.PlayerLeave:
+                    case MessageType.PlayerKick:
+                    case MessageType.PlayerBan:
+                    case MessageType.PlayerIpBan:
+                        _colorCache.Add(t, MessageColorPlayerAction);
+                        break;
+                    default:
+                        _colorCache.Add(t, MessageColorUnknown);
+                        break;
+                }
+            }
+        }
 
         void MinecraftConsole_LinkClicked(object sender, LinkClickedEventArgs e)
         {
