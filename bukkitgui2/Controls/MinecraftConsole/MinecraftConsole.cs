@@ -93,6 +93,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
             UpdateColorCache();
 		}
 
+		/// <summary>
+		///     Updates color cache for all message types
+		/// </summary>
         public void UpdateColorCache()
         {
             _colorCache.Clear();
