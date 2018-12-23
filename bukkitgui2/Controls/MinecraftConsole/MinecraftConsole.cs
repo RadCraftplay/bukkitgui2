@@ -1,4 +1,4 @@
-﻿// MinecraftConsole.cs in bukkitgui2/bukkitgui2
+// MinecraftConsole.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -72,13 +72,13 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		public Boolean Autoscroll { get; set; }
 
 		private readonly Dictionary<MessageType, Color> _colorCache;
-        private readonly string[] _msgTypeNameCache;
+		private readonly string[] _msgTypeNameCache;
 
 		public MinecraftConsole()
 		{
 			
 			KeyUp += MinecraftConsole_KeyUp;
-            LinkClicked += MinecraftConsole_LinkClicked;
+			LinkClicked += MinecraftConsole_LinkClicked;
 			MessageColorInfo = Color.Blue;
 			MessageColorPlayerAction = Color.DarkGreen;
 			MessageColorSevere = Color.DarkRed;
@@ -87,54 +87,54 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 			Autoscroll = true;
 			CreateContextMenu();
 
-            _msgTypeNameCache = Enum.GetNames(typeof (MessageType));
+			_msgTypeNameCache = Enum.GetNames(typeof (MessageType));
 			_colorCache = new Dictionary<MessageType, Color>();
 
-            UpdateColorCache();
+			UpdateColorCache();
 		}
 
 		/// <summary>
 		///     Updates color cache for all message types
 		/// </summary>
-        public void UpdateColorCache()
-        {
-            _colorCache.Clear();
+		public void UpdateColorCache()
+		{
+			_colorCache.Clear();
 
-            foreach (string name in _msgTypeNameCache)
-            {
-                MessageType t = (MessageType)Enum.Parse(typeof(MessageType), name);
-                switch (t)
-                {
-                    case MessageType.Info:
-                        _colorCache.Add(t, MessageColorInfo);
-                        break;
-                    case MessageType.JavaStatus:
-                    case MessageType.Warning:
-                        _colorCache.Add(t, MessageColorWarning);
-                        break;
-                    case MessageType.Severe:
-                    case MessageType.JavaStackTrace:
-                        _colorCache.Add(t, MessageColorSevere);
-                        break;
-                    case MessageType.PlayerJoin:
-                    case MessageType.PlayerLeave:
-                    case MessageType.PlayerKick:
-                    case MessageType.PlayerBan:
-                    case MessageType.PlayerIpBan:
-                        _colorCache.Add(t, MessageColorPlayerAction);
-                        break;
-                    default:
-                        _colorCache.Add(t, MessageColorUnknown);
-                        break;
-                }
-            }
-        }
+			foreach (string name in _msgTypeNameCache)
+			{
+				MessageType t = (MessageType)Enum.Parse(typeof(MessageType), name);
+				switch (t)
+				{
+					case MessageType.Info:
+						_colorCache.Add(t, MessageColorInfo);
+						break;
+					case MessageType.JavaStatus:
+					case MessageType.Warning:
+						_colorCache.Add(t, MessageColorWarning);
+						break;
+					case MessageType.Severe:
+					case MessageType.JavaStackTrace:
+						_colorCache.Add(t, MessageColorSevere);
+						break;
+					case MessageType.PlayerJoin:
+					case MessageType.PlayerLeave:
+					case MessageType.PlayerKick:
+					case MessageType.PlayerBan:
+					case MessageType.PlayerIpBan:
+						_colorCache.Add(t, MessageColorPlayerAction);
+						break;
+					default:
+						_colorCache.Add(t, MessageColorUnknown);
+						break;
+				}
+			}
+		}
 
-        void MinecraftConsole_LinkClicked(object sender, LinkClickedEventArgs e)
-        {
-            string link = e.LinkText;
-            if (link.StartsWith("http")) Process.Start(e.LinkText);
-        }
+		void MinecraftConsole_LinkClicked(object sender, LinkClickedEventArgs e)
+		{
+			string link = e.LinkText;
+			if (link.StartsWith("http")) Process.Start(e.LinkText);
+		}
 
 		public void ScrollDown()
 		{

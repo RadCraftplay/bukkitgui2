@@ -1,4 +1,4 @@
-﻿// ConsoleTab.cs in bukkitgui2/bukkitgui2
+// ConsoleTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -43,9 +43,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
 			MCCOut.MessageColorWarning =
 				Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
-            MCCOut.UpdateColorCache();
+			MCCOut.UpdateColorCache();
 
-            MCCOut.ShowDate = Config.ReadBool("console", "date", false);
+			MCCOut.ShowDate = Config.ReadBool("console", "date", false);
 			MCCOut.ShowTime = Config.ReadBool("console", "time", true);
 
 			imgListPlayerFaces.Images.Clear();
